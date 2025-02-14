@@ -59,9 +59,6 @@ with st.spinner('Loading images...'):
     # Esegui un ciclo che duri circa 10 secondi senza bloccare il flusso
     for _ in range(10):
         time.sleep(1)  # Solo per simulare attività, l'animazione continua
-
-st.success('Caricamento completato!')
-
 st.success('Caricamento completato!')
 # Filtrare il dataset in base al gioco selezionato
 
