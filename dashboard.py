@@ -34,7 +34,6 @@ def load_data():
 
 # Carica il dataset solo una volta
 dataset = load_data()
-)
 
 #-------------- Inizio dashboard ------------------#
 
