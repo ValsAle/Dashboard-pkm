@@ -54,8 +54,12 @@ Welcome to the interactive dashboard where you can get information about the mos
 selected_game = st.selectbox("Select a game:", dataset["Game"].unique())
 with st.spinner("Loading data..."):
     time.sleep(1)  # Aspetta 1 secondo per simulare il caricamento
-    st.success('Caricamento completato!')
-  
+st.success('Loading complete!')
+
+success_message = st.success('Loading complete!')
+# Dopo 2 secondi, rimuovi il messaggio
+time.sleep(2)
+success_message.empty() 
 # Filtrare il dataset in base al gioco selezionato
 
 filtered_data = dataset[dataset["Game"] == selected_game]
