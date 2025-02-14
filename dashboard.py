@@ -92,7 +92,7 @@ for i in range(5):
         name, img, usage, se = pokemon_data[i]
         st.write(f"**{name}**")  # Nome del Pokémon
         if img:
-            st.image(img, width=200)  # Mostra l'immagine se esiste
+            st.image(img, width=150)  # Mostra l'immagine se esiste
         else:
             st.write("Image not found")
         st.write(f"**%usage: {usage:.2f} ± {se*100:.2f}%**")  # Mostra la percentuale sotto l'immagine
@@ -104,7 +104,7 @@ for i in range(5, 10):
         name, img, usage, se = pokemon_data[i]
         st.write(f"**{name}**")  # Nome del Pokémon
         if img:
-            st.image(img, width=200)  # Mostra l'immagine se esiste
+            st.image(img, width=150)  # Mostra l'immagine se esiste
         else:
             st.write("Image not found")
         st.write(f"**%usage: {usage:.2f} ± {se*100:.2f}%**")  # Mostra la percentuale sotto l'immagine
@@ -143,7 +143,7 @@ for starter in starters:
             name, img, usage, se = pokemon_data_starter[i]
             st.write(f"**{name}**")  # Nome del Pokémon
             if img:
-                st.image(img, width=200)  # Mostra l'immagine se esiste
+                st.image(img, width=150)  # Mostra l'immagine se esiste
             else:
                 st.write("Image not found")
             st.write(f"**%usage: {usage:.2f} ± {se*100:.2f}%**")
