@@ -28,7 +28,13 @@ def frequency_pkm(df, dict):
 
     return freq
 
-dataset = pd.read_excel(FILE_NAME, engine="openpyxl")
+@st.cache
+def load_data():
+    return pd.read_excel(FILE_NAME, engine="openpyxl"")
+
+# Carica il dataset solo una volta
+dataset = load_data()
+)
 
 #-------------- Inizio dashboard ------------------#
 
