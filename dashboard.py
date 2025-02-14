@@ -55,6 +55,10 @@ selected_game = st.selectbox("Select a game:", dataset["Game"].unique())
 with st.spinner("Loading data..."):
     time.sleep(1)  # Aspetta 1 secondo per simulare il caricamento
 
+with st.spinner('Loading images...'):
+    time.sleep(10)  # Attendi per 10 secondi
+
+st.success('Caricamento completato!')
 # Filtrare il dataset in base al gioco selezionato
 
 filtered_data = dataset[dataset["Game"] == selected_game]
