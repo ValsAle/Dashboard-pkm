@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import plotly.express as px
 import numpy as np
 from collections import Counter
 from PIL import Image
