@@ -28,7 +28,7 @@ def frequency_pkm(df, dict):
 
     return freq
 
-@st.cache
+@st.cache_data
 def load_data():
     return pd.read_excel(FILE_NAME, engine="openpyxl")
 
