@@ -54,7 +54,6 @@ Welcome to the interactive dashboard where you can get information about the mos
 selected_game = st.selectbox("Select a game:", dataset["Game"].unique())
 with st.spinner("Loading data..."):
     time.sleep(1)  # Aspetta 1 secondo per simulare il caricamento
-st.success('Loading complete!')
 
 success_message = st.success('Loading complete!')
 # Dopo 2 secondi, rimuovi il messaggio
