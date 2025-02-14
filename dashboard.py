@@ -4,6 +4,9 @@ import numpy as np
 from collections import Counter
 from PIL import Image
 import time
+#Impostazioni Layout
+st.set_page_config(page_title="Team composition",
+                   page_icon="Logo.png", layout="wide")
 
 FILE_NAME = "Pokemon teams.xlsx"
 
@@ -37,9 +40,7 @@ dataset = load_data()
 
 #-------------- Inizio dashboard ------------------#
 
-#Impostazioni Layout
-st.set_page_config(page_title="Team composition",
-                   page_icon="Logo.png", layout="wide")
+
 
 #Titolo della pagina
 st.title("Most used Pokémon for each generations")
