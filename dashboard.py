@@ -30,7 +30,7 @@ def frequency_pkm(df, dict):
 
 @st.cache
 def load_data():
-    return pd.read_excel(FILE_NAME, engine="openpyxl"")
+    return pd.read_excel(FILE_NAME, engine="openpyxl")
 
 # Carica il dataset solo una volta
 dataset = load_data()
