@@ -12,11 +12,8 @@ FILE_NAME = "Pokemon teams.xlsx"
 
 #funzione che conta il numero di ogni pokemon
 def count_values(df):
-    all_pkm = df.iloc[:, :-1].values.ravel()
+    return df.iloc[:, :-1].melt().value_counts().to_dict()
 
-    count_pkm = Counter(all_pkm)
-    
-    return count_pkm
 
 #funzione che mi ritorna una lista di 10 pokemon più utilizzati e le loro frequenze assolute
 def top_10(dict, n):
@@ -35,6 +32,10 @@ def frequency_pkm(df, dict):
 def load_data():
     return pd.read_excel(FILE_NAME, engine="openpyxl")
 
+@st.cache_data
+def filter_data(game):
+    return dataset[dataset["Game"] == game]
+  
 # Carica il dataset solo una volta
 dataset = load_data()
 
@@ -53,15 +54,10 @@ Welcome to the interactive dashboard where you can get information about the mos
 # Menù a tendina per selezionare il gioco
 selected_game = st.selectbox("Select a game:", dataset["Game"].unique())
 with st.spinner("Loading data..."):
-    time.sleep(1)  # Aspetta 1 secondo per simulare il caricamento
+    filtered_data = filter_data(selected_game)
+st.success('Loading complete!')  # Aspetta 1 secondo per simulare il caricamento
 
-success_message = st.success('Loading complete!')
-# Dopo 2 secondi, rimuovi il messaggio
-time.sleep(2)
-success_message.empty() 
 # Filtrare il dataset in base al gioco selezionato
-
-filtered_data = dataset[dataset["Game"] == selected_game]
 
 count_pkm = count_values(filtered_data)
 pkm_abs_freq =  frequency_pkm(filtered_data, count_pkm)
