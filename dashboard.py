@@ -79,10 +79,11 @@ for items in top_10_pkm[:10]:  # Prendiamo solo i primi 10 Pokémon
     pokemon_image_path = f"images/{pokemon.capitalize()}.png"
 
     try:
-        image = Image.open(pokemon_image_path)
-        pokemon_data.append((pokemon, image, percentage, se))  # Salviamo nome, immagine e percentuale
+      with Image.open(pokemon_image_path) as image:
+        pokemon_data.append((pokemon, image.copy(), percentage, se))  # Copia per evitare problemi di chiusura
     except FileNotFoundError:
-        pokemon_data.append((pokemon, None, percentage, se))  # Se manca l'immagine, mettiamo None
+      pokemon_data.append((pokemon, None, percentage, se))  # Se manca l'immagine, mettiamo None
+
 
 
 # Prima riga (primi 5 Pokémon)
@@ -128,12 +129,13 @@ for starter in starters:
         se = 1.96 * np.sqrt(percentage/100*(1-percentage/100)/len(filtered_data))  # Percentuale di utilizzo
         pokemon_image_path_starter = f"images/{pokemon.capitalize()}.png"
 
-        
+
+
         try:
-            image = Image.open(pokemon_image_path_starter)
-            pokemon_data_starter.append((pokemon, image, percentage, se))  # Salviamo nome, immagine e percentuale
+            with Image.open(pokemon_image_path) as image:
+              pokemon_data.append((pokemon, image.copy(), percentage, se))  # Copia per evitare problemi di chiusura
         except FileNotFoundError:
-            pokemon_data_starter.append((pokemon, None, percentage, se))  # Se manca l'immagine, mettiamo None
+              pokemon_data.append((pokemon, None, percentage, se))  # Se manca l'immagine, mettiamo None
 
 
     # Prima riga (primi 6 Pokémon)
