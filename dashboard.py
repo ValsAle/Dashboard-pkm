@@ -5,6 +5,13 @@ from collections import Counter
 from PIL import Image
 import time
 
+#Impostazioni Layout
+st.set_page_config(page_title="Team composition",
+                   page_icon="Logo.png", layout="wide")
+
+#Titolo della pagina
+st.title("Most used Pokémon for each generations")
+
 FILE_NAME = "Pokemon teams.xlsx"
 
 #funzione che conta il numero di ogni pokemon
@@ -32,12 +39,7 @@ dataset = pd.read_excel(FILE_NAME, engine="openpyxl")
 
 #-------------- Inizio dashboard ------------------#
 
-#Impostazioni Layout
-st.set_page_config(page_title="Team composition",
-                   page_icon="Logo.png", layout="wide")
 
-#Titolo della pagina
-st.title("Most used Pokémon for each generations")
 
 # Introduzione alla dashboard
 st.markdown("""
