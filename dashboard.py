@@ -41,7 +41,9 @@ dataset = load_data()
 
 #-------------- Inizio dashboard ------------------#
 
-
+#Impostazioni Layout
+st.set_page_config(page_title="Team composition",
+                   page_icon="Logo.png", layout="wide")
 
 #Titolo della pagina
 st.title("Most used Pokémon for each generations")
@@ -54,10 +56,11 @@ Welcome to the interactive dashboard where you can get information about the mos
 # Menù a tendina per selezionare il gioco
 selected_game = st.selectbox("Select a game:", dataset["Game"].unique())
 with st.spinner("Loading data..."):
-    filtered_data = filter_data(selected_game)
-st.success('Loading complete!')  # Aspetta 1 secondo per simulare il caricamento
+    time.sleep(1)  # Aspetta 1 secondo per simulare il caricamento
 
 # Filtrare il dataset in base al gioco selezionato
+
+filtered_data = dataset[dataset["Game"] == selected_game]
 
 count_pkm = count_values(filtered_data)
 pkm_abs_freq =  frequency_pkm(filtered_data, count_pkm)
@@ -76,7 +79,6 @@ for items in top_10_pkm[:10]:  # Prendiamo solo i primi 10 Pokémon
     pokemon = items[0]
     percentage = items[1]
     se = 1.96 * np.sqrt(percentage/100*(1-percentage/100)/len(filtered_data))  # Percentuale di utilizzo
-    st.write(f"Debug: valore di 'pokemon' = {pokemon} (tipo: {type(pokemon)})")
     pokemon_image_path = f"images/{pokemon.capitalize()}.png"
 
     try:
@@ -85,6 +87,7 @@ for items in top_10_pkm[:10]:  # Prendiamo solo i primi 10 Pokémon
     except FileNotFoundError:
         pokemon_data.append((pokemon, None, percentage, se))  # Se manca l'immagine, mettiamo None
 
+
 # Prima riga (primi 5 Pokémon)
 cols = st.columns(5)  # Creiamo 5 colonne
 for i in range(5):
@@ -92,7 +95,7 @@ for i in range(5):
         name, img, usage, se = pokemon_data[i]
         st.write(f"**{name}**")  # Nome del Pokémon
         if img:
-            st.image(img, width=150)  # Mostra l'immagine se esiste
+            st.image(img, width=200)  # Mostra l'immagine se esiste
         else:
             st.write("Image not found")
         st.write(f"**%usage: {usage:.2f} ± {se*100:.2f}%**")  # Mostra la percentuale sotto l'immagine
@@ -104,7 +107,7 @@ for i in range(5, 10):
         name, img, usage, se = pokemon_data[i]
         st.write(f"**{name}**")  # Nome del Pokémon
         if img:
-            st.image(img, width=150)  # Mostra l'immagine se esiste
+            st.image(img, width=200)  # Mostra l'immagine se esiste
         else:
             st.write("Image not found")
         st.write(f"**%usage: {usage:.2f} ± {se*100:.2f}%**")  # Mostra la percentuale sotto l'immagine
@@ -133,7 +136,7 @@ for starter in starters:
             image = Image.open(pokemon_image_path_starter)
             pokemon_data_starter.append((pokemon, image, percentage, se))  # Salviamo nome, immagine e percentuale
         except FileNotFoundError:
-            pokemon_data_starter.append((pokemon, None, percentage, se))
+            pokemon_data_starter.append((pokemon, None, percentage, se))  # Se manca l'immagine, mettiamo None
 
 
     # Prima riga (primi 6 Pokémon)
@@ -143,9 +146,10 @@ for starter in starters:
             name, img, usage, se = pokemon_data_starter[i]
             st.write(f"**{name}**")  # Nome del Pokémon
             if img:
-                st.image(img, width=150)  # Mostra l'immagine se esiste
+                st.image(img, width=200)  # Mostra l'immagine se esiste
             else:
                 st.write("Image not found")
             st.write(f"**%usage: {usage:.2f} ± {se*100:.2f}%**")
     
     st.write("-------------------------------------------------------------")
+
