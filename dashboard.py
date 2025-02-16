@@ -76,6 +76,7 @@ for items in top_10_pkm[:10]:  # Prendiamo solo i primi 10 Pokémon
     pokemon = items[0]
     percentage = items[1]
     se = 1.96 * np.sqrt(percentage/100*(1-percentage/100)/len(filtered_data))  # Percentuale di utilizzo
+    st.write(f"Debug: valore di 'pokemon' = {pokemon} (tipo: {type(pokemon)})")
     pokemon_image_path = f"images/{pokemon.capitalize()}.png"
 
     try:
