@@ -4,16 +4,16 @@ import numpy as np
 from collections import Counter
 from PIL import Image
 import time
-#Impostazioni Layout
-st.set_page_config(page_title="Team composition",
-                   page_icon="Logo.png", layout="wide")
 
 FILE_NAME = "Pokemon teams.xlsx"
 
 #funzione che conta il numero di ogni pokemon
 def count_values(df):
-    return df.iloc[:, :-1].melt().value_counts().to_dict()
+    all_pkm = df.iloc[:, :-1].values.ravel()
 
+    count_pkm = Counter(all_pkm)
+    
+    return count_pkm
 
 #funzione che mi ritorna una lista di 10 pokemon più utilizzati e le loro frequenze assolute
 def top_10(dict, n):
@@ -28,16 +28,7 @@ def frequency_pkm(df, dict):
 
     return freq
 
-@st.cache_data
-def load_data():
-    return pd.read_excel(FILE_NAME, engine="openpyxl")
-
-@st.cache_data
-def filter_data(game):
-    return dataset[dataset["Game"] == game]
-  
-# Carica il dataset solo una volta
-dataset = load_data()
+dataset = pd.read_excel(FILE_NAME, engine="openpyxl")
 
 #-------------- Inizio dashboard ------------------#
 
@@ -152,4 +143,3 @@ for starter in starters:
             st.write(f"**%usage: {usage:.2f} ± {se*100:.2f}%**")
     
     st.write("-------------------------------------------------------------")
-
