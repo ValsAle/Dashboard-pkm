@@ -71,6 +71,7 @@ def filters(dict):
         del dict["Eelektross"]
     if selected_game == "BW2" and starter == "Emboar":
         del dict["Magnezone"]
+        del dict["Galvantula"]
     if selected_game == "XY":
         del dict["Raichu"]
         del dict["Ampharos"]
