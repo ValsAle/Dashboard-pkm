@@ -53,7 +53,31 @@ def load_data():
     return pd.read_excel(FILE_NAME, engine="openpyxl")
 
 dataset = load_data()
-
+def filters(dict):
+    if selected_game == "FRLG":
+        del dict["Jolteon"]
+    if selected_game == "RSE":
+        del dict["Altaria"]
+    if starter == "Sceptile":
+        del dict["Flygon"]
+    if starter == "Blaziken":
+        del dict["Salamence"]
+    if selected_game == "DPP":
+        del dict["Togekiss"]
+    if starter == "Infernape":
+        del dict["Gastrodon"]
+    if selected_game == "BW":
+        del dict["Galvantula"]
+        del dict["Eelektross"]
+    if selected_game == "XY":
+        del dict["Raichu"]
+        del dict["Ampharos"]
+    if starter == "Chesnaught" or starter == "Greninja":
+        del dict["Charizard"]
+    if starter == "Greninja":
+        del dict["Aegislash"]
+    if starter == "Delphox":
+        del dict["Lucario"]
 # Introduzione alla dashboard
 st.markdown("Welcome to the interactive dashboard where you can get information about the most used Pokémon in Pokémon games.")
 
@@ -91,6 +115,7 @@ for starter in starters:
     df_starter = filtered_data[filtered_data["Starter"] == starter]
     count_pkm_starter = count_values(df_starter)
     pkm_abs_freq_starter = frequency_pkm(df_starter, count_pkm_starter)
+    filters(pkm_abs_freq_starter)
     top_starters = top_n(pkm_abs_freq_starter, 6)
 
     pokemon_data_starter = [
