@@ -69,6 +69,8 @@ def filters(dict):
     if selected_game == "BW":
         del dict["Galvantula"]
         del dict["Eelektross"]
+    if selected_game == "BW" and starter == "Samurott":
+        del dict["Braviary"]
     if selected_game == "BW2" and starter == "Emboar":
         del dict["Magnezone"]
         del dict["Galvantula"]
